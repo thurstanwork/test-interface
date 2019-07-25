@@ -1,0 +1,51 @@
+@import '../colours.scss';
+@import './variables.scss';
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #fff;
+  position: fixed!important;
+  z-index: 1;
+  overflow: auto;
+  display: flex;
+  flex-flow: column;
+
+  &.is-dark {
+    background-color: $sidebar--dark-background;
+  }
+
+  &.is-closed {
+    width: 3rem;
+
+    // Hide all non-footer items
+    :not(:last-child) {
+      display: none;
+    }
+
+    // Rotate the footer
+    :last-child {
+      > i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.sidebar__footer {
+  background-color: $sidebar--dark-background;
+  color: white;
+  height: 3rem;
+  margin-top: auto;
+
+  // Footer chevron
+  > div {
+    > i {
+      line-height: 3rem;
+      font-size: 2.4rem;
+      float: right;
+      margin-right: .8rem;
+    }
+  }
+
+}

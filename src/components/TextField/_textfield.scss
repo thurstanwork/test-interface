@@ -1,0 +1,79 @@
+@import "../colours";
+
+$field-margin: 20px;
+$field-background: $aurecon--field--bg;
+$field-padding: 15px;
+
+.field {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    font-weight: bold;
+    width: 100%;
+    position: relative;
+
+    > label > input[type=text], > label > input[type=password], > label > textarea {
+        width: 100%;
+    }
+
+    &.is-optional::before {
+        content: "(optional)";
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        font-weight: normal;
+    }
+
+    &.is-verified::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f00c";
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        color: $aurecon--success;
+        position: absolute;
+        right: 30px;
+        top: 20px;
+    }
+
+    &.is-optional.is-verified::before {
+        right: 60px;
+    }
+
+    input[type=text], input[type=password], textarea {
+        display: block;
+        margin-top: 10px;
+        background-color: $field-background;
+        -webkit-appearance: none;
+        border: none;
+        padding: $field-padding;
+    }
+
+    input[type=text]:required, input[type=password]:required, textarea:required {
+        border-bottom: 2px solid $aurecon--error;
+        box-shadow: none;
+    }
+
+    > .required, > label > .required {
+        font-size: 0.8em;
+
+        &::before {
+            content: "*";
+            color: $aurecon--error;
+            margin-right: 10px;
+        }
+
+        &::after {
+            content: "Required field";
+            font-weight: normal;
+        }
+    }
+}
+
+.field:not(:last-child), .field > label:not(:last-child) {
+    margin-bottom: inherit;
+}

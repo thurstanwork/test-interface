@@ -1,0 +1,10 @@
+// Structure copied from Bulmaswatch (https://jenil.github.io/bulmaswatch/help/)
+
+// Import root variable changes
+@import "./variables";
+
+// Import the plain Bulma sass styles
+@import "../node_modules/bulma/bulma";
+
+// Import override for components
+@import "./override";

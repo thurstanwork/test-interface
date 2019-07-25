@@ -1,0 +1,91 @@
+@import "../colours";
+@import "../TextField/textfield";
+
+$dropdown-width: 300px;
+$dropdown-padding: 10px;
+$dropdown-primary-color: $aurecon--primary;
+
+.dropdown {
+    @extend .field;
+
+    select {
+        -webkit-appearance: none;
+        display: block;
+        margin-top: 10px;
+        background-color: $field-background;
+        border: none;
+        padding: $field-padding;
+        width: 100%;
+        position: relative;
+        border-radius: 0;
+
+        &:required {
+            border-bottom: 2px solid $aurecon--error;
+            box-shadow: none;
+        }
+    }
+
+    &::after {
+        content: "▼";
+        display: block;
+        width: 1em;
+        height: 1em;
+        position: absolute;
+        line-height: 1em;
+        right: 35px;
+        color: $dropdown-primary-color;
+        top: calc(50% - 0.5em + 7px);
+        transform: scale(1, 0.5);
+        transition: color 0.3s ease;
+    }
+}
+
+.desktop-dropdown {
+    max-width: $dropdown-width;
+    background-color: mix($dropdown-primary-color, #FFFFFF, 50%);
+    transition: background-color 0.3s ease, font-weight 0.3s ease;
+    position: absolute;
+    width: 100%;
+
+    &:hover {
+        background-color: $dropdown-primary-color;
+
+        > .arrow::after {
+            color: #000000;
+        }
+    }
+
+    > div {
+        padding: $dropdown-padding;
+        transition: background-color 0.3s ease, font-weight 0.3s ease;
+    }
+
+    &.is-open {
+        background-color: #FFFFFF;
+        border: 3px solid $dropdown-primary-color;
+
+        > div:not(.arrow):hover {
+            background-color: mix($dropdown-primary-color, #FFFFFF, 50%);
+            font-weight: bold;
+        }
+    }
+
+    > .arrow {
+        position: relative;
+        padding: 0px;
+
+        &::after {
+            content: "▼";
+            display: block;
+            width: 1em;
+            height: 1em;
+            position: absolute;
+            line-height: 1em;
+            color: $dropdown-primary-color;
+            top: -2em;
+            left: calc(100% - 2em);
+            transform: scale(1, 0.5);
+            transition: color 0.3s ease;
+        }
+    }
+}

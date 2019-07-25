@@ -1,0 +1,52 @@
+@import "../colours";
+
+$list-padding: 10px 8px;
+$list-tall-padding: 15px 8px;
+
+.list {
+    border-radius: 0;
+    box-shadow: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+
+    > div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: flex-start;
+        align-items: flex-start;
+        border-collapse: collapse;
+        border-bottom: 1px solid $aurecon--ui-3;
+
+        > div {
+            display: block;
+            padding: $list-padding;
+            width: 250px;
+        }
+
+        &.is-selected {
+            background-color: $aurecon--primary;
+            border: none;
+        }
+
+        &.is-active {
+            background-color: mix($aurecon--primary, #FFFFFF, 30%);
+            border: 1px solid $aurecon--primary;
+        }
+    }
+
+    &.is-selectable > div > div:first-child {
+        width: 80px;
+    }
+
+    &.is-tall > div > div {
+        padding: $list-tall-padding;
+    }
+
+    > .is-header {
+        font-weight: bold;
+        border-bottom: 5px solid $aurecon--primary;
+    }
+}

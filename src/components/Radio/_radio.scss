@@ -1,0 +1,71 @@
+@import "../colours";
+
+$radio-size: 24px;
+$radio-border: $aurecon--primary;
+$radio-border-size: 3px;
+$radio-active-bg: $aurecon--primary;
+
+.radios {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.radio + .radio {
+    margin-left: 0;
+}
+
+.radios.horizontal {
+    flex-direction: row;
+
+    .radio {
+        margin-right: 20px;
+    }
+}
+
+label.radio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3px;
+
+    input {
+        -webkit-appearance: none;
+        width: $radio-size;
+        height: $radio-size;
+        border: $radio-border-size solid $radio-border;
+        border-radius: $radio-size / 2;
+        margin-right: 5px;
+        transition: box-shadow 0.3s ease;
+    }
+
+    input::before {
+        content: " ";
+        display: block;
+        width: $radio-size - ($radio-border-size * 4);
+        height: $radio-size - ($radio-border-size * 4);
+        position: relative;
+        top: $radio-border-size;
+        left: $radio-border-size;
+        border-radius: 50%;
+        background-color: $radio-active-bg;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    input:checked::before {
+        opacity: 1;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0px 2px 6px -1px #000;
+    }
+
+    input:disabled {
+        opacity: 0.4;
+    }
+}

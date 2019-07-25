@@ -1,0 +1,56 @@
+@import '../colours';
+
+$border-width: 2px;
+
+.button {
+
+  border-width: $border-width;
+  
+  &.is-active,
+  &.is-focused,
+  &:active,
+  &:focus {
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+
+    &.is-#{$name} {
+
+      border-width: $border-width;
+
+      &.is-outlined {
+        &.is-focused,
+        &:focus {
+          background-color: white;
+          color: $primary;
+        }
+        &:hover {
+          color: white;
+          background-color: $primary-dark;
+          border-color: $primary-dark;
+        }
+        &.is-active,
+        &:active {
+          background-color: $primary;
+          border-color: $primary;
+          color: $black;
+          box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      &.is-active,
+      &.is-focused,
+      &:active,
+      &:focus {
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+      &:hover {
+        color: white;
+        background-color: $primary-dark;
+      }
+    }
+  }
+}

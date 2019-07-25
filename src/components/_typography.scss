@@ -1,0 +1,13 @@
+// Move the fonts to our own CDN
+// Add them into the deployment pipeline in the future so they can be versioned
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500');
+
+// html, body {
+//   font-family: 'FiraGO', 'Fira Sans', 'Helvetica Neue', Arial, sans-serif;
+// }
+
+$font-family: 'FiraGO', 'Fira Sans', 'Helvetica Neue', Arial, sans-serif;
+
+$font-weight-light: 300 !default;
+$font-weight-regular: 400 !default;
+$font-weight-medium: 500 !default;

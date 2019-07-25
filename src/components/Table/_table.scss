@@ -1,0 +1,150 @@
+@import "../colours";
+
+$table-padding: 15px;
+$table-compact-padding: 4px 15px;
+$table-base-color: $aurecon--ui-3;
+$table-stripe: $aurecon--ui-2;
+$table-border-width: 2px;
+$table-active-color: mix($aurecon--primary, #FFFFFF, 30%);
+$table-page-height: 58px;
+
+.table {
+    width: calc(100% - #{$table-padding * 2});
+    margin: $table-padding !important;
+    border-collapse: collapse;
+    border: $table-border-width solid $table-base-color;
+
+    > thead {
+        > tr {
+            background-color: $table-base-color;
+
+            > th {
+                font-weight: bold;
+                padding: $table-padding;
+            }
+        }
+    }
+
+    > tbody {
+        > tr {
+            transition: background-color 0.3s ease;
+
+            &.is-selected {
+                background-color: $aurecon--primary !important;
+                border-left: $table-border-width solid $aurecon--primary;
+                border-right: $table-border-width solid $aurecon--primary;
+
+                td {
+                    border-top: $table-border-width solid $aurecon--primary;
+                    border-color: $aurecon--primary;
+                }
+            }
+
+            &.is-active {
+                background-color: $table-active-color !important;
+                border-left: $table-border-width solid $aurecon--primary;
+                border-right: $table-border-width solid $aurecon--primary;
+                border-top: 1px solid $aurecon--primary !important;
+                border-bottom: 1px solid $aurecon--primary;
+            }
+
+            &.is-selected {
+                background-color: $aurecon--primary !important;
+                border-left: $table-border-width solid $aurecon--primary;
+                border-right: $table-border-width solid $aurecon--primary;
+            }
+
+            > td {
+                padding: $table-padding;
+                vertical-align: middle;
+
+                :nth-child(2) {
+                    font-size: 0.8em;
+                }
+            }
+        }
+
+        tr:not(.is-selected) + tr:not(.is-selected) {
+            border-top: 1px solid $table-base-color;
+        }
+
+        tr.is-selected + tr {
+            border-top: 1px solid $aurecon--primary;
+        }
+
+        tr.is-active + tr.is-active {
+            border-top: 1px solid $aurecon--primary;
+        }
+    }
+
+    & + .pagination, & + .lazy, & + .pagination + .lazy {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        &.lazy {
+            justify-content: center;
+        }
+        align-items: center;
+        align-content: center;
+
+        height: $table-page-height;
+        width: calc(100% - #{$table-padding * 2});
+        margin: $table-padding;
+        margin-top: #{$table-padding * -1 - $table-border-width} !important;
+        border-collapse: collapse;
+        border: $table-border-width solid $table-base-color;
+
+        > .next, > .prev {
+            width: $table-page-height;
+            height: $table-page-height;
+            border: 1px solid $table-base-color;
+            margin-right: -1px;
+
+            &::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                display: block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                line-height: 1;
+                color: black;
+                font-size: 2.3em;
+                padding-top: 0.25em;
+            }
+
+            &.next::before {
+                content: "\f054";
+            }
+
+            &.prev::before {
+                content: "\f053";
+            }
+
+            &:first-of-type {
+                margin-left: 24px;
+            }
+        }
+    }
+
+    &.is-compact {
+        > head > tr > th {
+            padding: $table-compact-padding;
+        }
+
+        > tbody > tr > td {
+            padding: $table-compact-padding;
+        }
+    }
+
+    &.is-striped {
+        > tbody > tr:nth-child(even) {
+            background-color: $table-stripe;
+        }
+    }
+
+    > tbody > tr:hover {
+        background-color: $table-base-color !important;
+    }
+}

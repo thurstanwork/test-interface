@@ -1,0 +1,23 @@
+////////////////////////////////////////////////
+// AURECON
+////////////////////////////////////////////////
+
+// Aurecon specific variables go here
+// Information on what can be change can be found in the bulma
+//  _initial_variables.scss and _derived_variables.scss files
+// Or on the website at https://bulma.io/documentation/customize/variables/
+
+@import './colours';
+
+$primary: $aurecon--primary !default;
+$primary-dark: $aurecon--primary-dark;
+
+$button-hover-color: $aurecon--primary-dark;
+$button-text-hover-background-color: #fff;
+$button-text-hover-color: #FFF;
+
+$primary-invert: #000;
+
+$radius: 0;
+$radius-small: $radius;
+

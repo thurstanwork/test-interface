@@ -1,0 +1,67 @@
+// Primary Aurecon Colors
+// https://coolors.co/84bd00-373a36-f6faf4-000000-b1b4af
+
+// Naming follows the convention of Carbon Colors https://www.npmjs.com/package/@carbon/colors
+// Todo: add as a mixin with a customisable prefix
+
+$aurecon--primary: #84bd00;
+$aurecon--primary-dark: #518C00;
+$aurecon--primary-light: #B8F04A;
+
+// Alternate shades (tint/shade better?)
+
+$aurecon--primary-900: darken($aurecon--primary, 40%);
+$aurecon--primary-800: darken($aurecon--primary, 30%);
+$aurecon--primary-700: darken($aurecon--primary, 20%);
+$aurecon--primary-600: darken($aurecon--primary, 10%);
+$aurecon--primary-500: #84bd00;
+$aurecon--primary-400: lighten($aurecon--primary, 10%);
+$aurecon--primary-300: lighten($aurecon--primary, 20%);
+$aurecon--primary-200: lighten($aurecon--primary, 30%);
+$aurecon--primary-100: lighten($aurecon--primary, 40%);
+$aurecon--primary-50: lighten($aurecon--primary, 45%);
+
+// Secondary
+
+$aurecon--secondary: #373A36;
+$aurecon--secondary-dark: #111410;
+$aurecon--secondary-light: #616460;
+
+$aurecon--secondary-900: darken($aurecon--secondary, 40%);
+$aurecon--secondary-800: darken($aurecon--secondary, 30%);
+$aurecon--secondary-700: darken($aurecon--secondary, 20%);
+$aurecon--secondary-600: darken($aurecon--secondary, 10%);
+$aurecon--secondary-500: #84bd00;
+$aurecon--secondary-400: lighten($aurecon--secondary, 10%);
+$aurecon--secondary-300: lighten($aurecon--secondary, 20%);
+$aurecon--secondary-200: lighten($aurecon--secondary, 30%);
+$aurecon--secondary-100: lighten($aurecon--secondary, 40%);
+$aurecon--secondary-50: lighten($aurecon--secondary, 45%);
+
+// Text
+
+$aurecon--text-primary: #000000;
+$aurecon--text-primary-secondary: #FFFFFF;
+$aurecon--text-alternate: rgba(#000000, .6);
+$aurecon--text-alternate-secondary: rgba(#FFFFFF, .6);
+
+// Notifications
+
+$aurecon--error: #E0452A;
+$aurecon--warning: #F6D510;
+$aurecon--success: #00BD39;
+$aurecon--information: #14A4DE;
+
+// UI
+
+$aurecon--ui-1: #FFFFFF;
+$aurecon--ui-2: #EEF2ED;
+$aurecon--ui-3: #E5E9E4;
+$aurecon--ui-4: #D4D8D3;
+$aurecon--ui-5: #B1B4AF;
+
+// Global Defaults
+
+$aurecon--bg: $aurecon--ui-2;
+
+$aurecon--field--bg: #F6FAF4;

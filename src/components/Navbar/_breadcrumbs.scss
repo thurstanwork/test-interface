@@ -1,0 +1,70 @@
+@import "../colours";
+
+.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-top: 17px;
+    margin-bottom: 17px !important;
+
+    color: #000000;
+    background-color: #FFFFFF;
+    opacity: 1;
+    padding: 0px $navbar-spacing;
+    z-index: $navbar-index - 1;
+
+    position: sticky;
+    left: 0;
+    top: $navbar-height;
+    box-shadow: 0px 0px 15px 17px rgba(0, 0, 0, 0.05);
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    font-size: 0.8rem;
+
+    > * {
+        color: inherit;
+        background-color: inherit;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+            color: $aurecon--primary;
+            text-decoration: underline;
+        }
+
+        &::after {
+            content: "\f054";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+
+            margin-left: 10px;
+            margin-right: 10px;
+            color: #000000;
+            text-decoration: none;
+        }
+    }
+}
+
+.pageTitle + .breadcrumbs {
+    margin-top: -17px;
+    top: $navbar-height + 43px;
+    box-shadow: 0px 10px 7px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar.is-dark ~ * .breadcrumbs {
+    background-color: $aurecon--secondary;
+    color: #FFFFFF;
+
+    > *::after {
+        color: #FFFFFF;
+    }
+}

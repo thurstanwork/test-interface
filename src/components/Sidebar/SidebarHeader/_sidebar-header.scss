@@ -1,0 +1,38 @@
+@import '../variables.scss';
+
+.overflow-elipsis {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: none;
+  height: 4rem;
+  background-color: white;
+
+  .image {
+    margin: .5rem;
+    min-width: 3rem;
+  }
+
+  .media-content {
+    overflow: hidden;
+  }
+
+  &.is-dark {
+
+    background-color: $sidebar--dark-background;
+    
+    .title {
+      color: $white;
+    }
+  
+    .subtitle {
+      color: $grey-lighter;
+    }
+  }
+ }

@@ -1,0 +1,38 @@
+@import "../colours";
+
+$status-size: 24px;
+$status-success: $aurecon--success;
+$status-warning: $aurecon--warning;
+$status-error: $aurecon--error;
+
+@mixin status($color) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    color: $color;
+    vertical-align: middle;
+
+    &::before {
+        content: " ";
+        display: block;
+        width: $status-size;
+        height: $status-size;
+        background-color: $color;
+        border-radius: 50%;
+        margin-right: $status-size / 2;
+    }
+}
+
+.status-success {
+    @include status($status-success);
+}
+
+.status-warning {
+    @include status($status-warning);
+}
+
+.status-error {
+    @include status($status-error);
+}

@@ -1,0 +1,89 @@
+@import "../colours";
+@import "./status";
+
+$card-footer-background: mix($aurecon--primary, mix(#000000, #FFFFFF, 5%), 5%);
+$card-background: #FFF;
+$card-text: #000;
+$card-img-size: 60px;
+$card-padding: 40px;
+
+.card {
+    background-color: $card-background;
+    box-shadow: 0px 0px 7px -1px rgba(0, 0, 0, 0.3);
+    color: $card-text;
+    width: fit-content;
+    position: relative;
+
+    > :first-child {
+        padding-top: $card-padding;
+    }
+
+    > :last-child:not(.footer) {
+        padding-bottom: $card-padding;
+    }
+
+    > * {
+        padding-left: $card-padding;
+        padding-right: $card-padding;
+    }
+
+    > .menu::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f142";
+        display: block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        position: absolute;
+        color: #000;
+        right: 20px;
+        top: 15px;
+        cursor: pointer;
+        font-size: 1.6rem;
+    }
+
+    > .profile {
+        width: $card-img-size;
+        height: $card-img-size;
+        object-fit: cover;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 50%;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-bottom: $card-padding;
+    }
+
+    > .title {
+        font-weight: normal;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    > .subtitle {
+        font-weight: bold;
+        font-weight: 700;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    > .footer {
+        background-color: $card-footer-background;
+        padding: $card-padding / 2;
+        display: grid;
+        grid-template-columns: auto min-content;
+        grid-gap: 15px;
+        justify-items: stretch;
+        align-items: center;
+
+        > * {
+            vertical-align: baseline;
+            &:last-child {
+                text-align: end;
+            }
+        }
+    }
+}

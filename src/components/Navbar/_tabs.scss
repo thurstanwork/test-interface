@@ -1,0 +1,61 @@
+@import "../colours";
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-end;
+    align-items: flex-end;
+    margin-top: 17px;
+    margin-bottom: 17px !important;
+
+    color: #000000;
+    background-color: #FFFFFF;
+    opacity: 1;
+    padding: 0px $navbar-spacing;
+    z-index: $navbar-index - 1;
+
+    position: sticky;
+    left: 0;
+    top: $navbar-height;
+    box-shadow: 0px 0px 15px 17px rgba(0, 0, 0, 0.05);
+    padding-top: 5px;
+
+    &.is-disabled {
+        opacity: 0.4;
+    }
+
+    > .tab {
+        padding-bottom: $navbar-spacing / 2;
+        color: inherit;
+        background-color: inherit;
+        user-select: none;
+        cursor: pointer;
+
+        & + .tab {
+            margin-left: $navbar-spacing;
+        }
+
+        &:hover {
+            color: $aurecon--primary;
+        }
+
+        &.is-active {
+            padding-bottom: ($navbar-spacing / 2) - 5px;
+            border-bottom: 5px solid $aurecon--primary;
+            color: $aurecon--primary;
+        }
+    }
+}
+
+.pageTitle + .tabs {
+    margin-top: -17px;
+    top: $navbar-height + 43px;
+    box-shadow: 0px 10px 7px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navbar.is-dark ~ * .tabs {
+    background-color: $aurecon--secondary;
+    color: #FFFFFF;
+}

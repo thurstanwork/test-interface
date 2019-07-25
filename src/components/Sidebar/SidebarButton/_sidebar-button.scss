@@ -1,0 +1,55 @@
+@import '../variables.scss';
+
+.sidebar__button {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  padding: .25rem 1rem;
+  height: 2rem;
+  background-color: white;
+
+  &.is-secondary {
+    padding: .25rem 2rem; 
+  }
+
+  &.is-active {
+    border-left: 2px solid $aurecon--primary;
+    background-color: $sidebar__button--active-colour;
+  }
+  
+  &.is-open {
+    i {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.is-dark {
+
+    background-color: $sidebar__button--dark-colour;
+    color: white;
+
+    &.is-active {
+      border-left: 2px solid white;
+      background-color: $sidebar__button--active--dark-colour;
+    }
+
+    a {
+      color: white;
+    }
+  
+  }
+ 
+  a {
+    font-size: .875rem;
+    color: $aurecon--text-primary;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,85 @@
+@import "../colours";
+
+$tile-background: #fff;
+$tile-hover-background: mix($aurecon--primary, #fff, 40%);
+$tile-focus-background: $tile-background;
+
+$tile-box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.3);
+
+// Using box-shadow as the border for tile because we want to inset the border
+$tile-border: inset 0 0 0 0px rgba(0, 0, 0, 0.5), $tile-box-shadow;
+$tile-hover-border: $tile-border;
+$tile-focus-border: inset 0 0 0 3px $aurecon--primary, $tile-box-shadow;
+
+$tile-expand-max-height: 300px;
+
+.tile {
+    box-shadow: $tile-border;
+    background-color: $tile-background;
+    margin: 10px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, max-height 0.3s ease;
+    position: relative;
+    width: fit-content;
+
+    &.is-expandable {
+        height: fit-content;
+
+        &:not(.is-expanded) {
+            max-height: $tile-expand-max-height;
+        }
+
+        &.is-expanded {
+            max-height: 100%;
+        }
+
+        &::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f078";
+            display: block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+            position: absolute;
+            font-size: 2rem;
+            bottom: 10px;
+            right: 20px;
+        }
+
+        &.is-expanded::after {
+            content: "\f077";
+        }
+    }
+
+    &.is-selectable {
+        &::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f055";
+            display: block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        &.is-selected::after {
+            content: "\f057";
+        }
+    }
+
+    &:hover {
+        box-shadow: $tile-hover-border;
+        background-color: $tile-hover-background;
+    }
+
+    &:focus, &:active {
+        box-shadow: $tile-focus-border;
+        background-color: $tile-focus-background;
+    }
+}

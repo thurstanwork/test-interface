@@ -1,0 +1,44 @@
+@import "../colours";
+
+$profileImgSize: 50px;
+$messageContainerSidePadding: 18px;
+$messageContainerTopBottomPadding: 14px;
+$messageContainerMinWidth: 200px;
+$messageContainerMaxWidth: 600px;
+
+.messageContainer {
+    padding: $messageContainerSidePadding $messageContainerTopBottomPadding;
+    min-width: $messageContainerMinWidth;
+    max-width: $messageContainerMaxWidth;
+}
+
+.messageHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.messageInfo {
+    align-self: center;
+}
+
+.messageProfileImg {
+    width: $profileImgSize;
+    height: $profileImgSize;
+    margin-right:10px;
+    border-radius: 50%;
+}
+
+.messageName {
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.messageSentDateTime {
+    color:$aurecon--secondary;
+}
+
+.messageText {
+    margin-top: 10px;
+}
+

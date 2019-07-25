@@ -1,0 +1,46 @@
+@import "../colours";
+
+@function pill-color($color) {
+    @return mix($color, #FFFFFF, 40%);
+}
+
+.pill {
+    background-color: $aurecon--primary;
+    border-radius: 7px;
+    padding: 3px 15px;
+    color: white;
+}
+
+.pill-error {
+    @extend .pill;
+
+    background-color: pill-color($aurecon--error);
+    color: black;
+}
+
+.pill-warning {
+    @extend .pill;
+
+    background-color: pill-color($aurecon--warning);
+    color: black;
+}
+
+.pill-ok {
+    @extend .pill;
+
+    background-color: pill-color($aurecon--information);
+    color: black;
+}
+
+.pill-good {
+    @extend .pill;
+
+    background-color: pill-color($aurecon--success);
+    color: black;
+}
+
+.is-selected .pill, .selected .pill {
+    background-color: white;
+    border: 3px solid $aurecon--primary;
+    color: black;
+}

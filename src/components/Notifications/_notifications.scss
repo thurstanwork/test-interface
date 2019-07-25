@@ -1,0 +1,158 @@
+@import "../colours";
+
+$toast-max-width: 380px;
+
+@mixin notification($color, $notification-text, $iconCode) {
+    padding: 5px;
+    border: 3px solid $color;
+    border-left-width: 9px;
+    margin: 10px;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding-left: 60px;
+    padding-right: 40px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+
+    &::before {
+        content: "#{$notification-text}:";
+        font-weight: bold;
+        margin-right: 1em;
+    }
+
+    &::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: $iconCode;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        position: absolute;
+        color: $color;
+        left: 25px;
+        font-size: 1.2rem;
+        top: calc(50% - 0.5em);
+    }
+
+    > .close::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f00d";
+        display: block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        position: absolute;
+        color: #777;
+        right: 25px;
+        font-size: 1.2rem;
+        top: calc(50% - 0.5em);
+        cursor: pointer;
+    }
+}
+
+:not(.toast) > .error {
+    @include notification($aurecon--error, "Error", "\f057");
+}
+
+:not(.toast) > .information {
+    @include notification($aurecon--information, "Information", "\f05a");
+}
+
+:not(.toast) > .warning {
+    @include notification($aurecon--warning, "Warning", "\f071");
+}
+
+:not(.toast) > .success {
+    @include notification($aurecon--success, "Success", "\f058");
+}
+
+@mixin toast($color, $notificationText) {
+    background-color: white;
+    padding: 10px;
+    border-left: 9px solid $color;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    max-width: $toast-max-width;
+    position: relative;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+
+    &::before {
+        content: "#{$notificationText}:";
+        font-weight: bold;
+    }
+
+    > .date {
+        padding-top: 2em;
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+
+    > .date::before {
+        content: "Time: ";
+    }
+
+    > .close::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f00d";
+        display: block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        position: absolute;
+        color: #777;
+        right: 20px;
+        font-size: 1.2rem;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    > .progress {
+        background-color: rgba(50, 50, 50, 0.1);
+        height: 5px;
+        position: relative;
+        border-radius: 0px;
+        margin-bottom: -10px;
+        margin-left: -10px;
+        transition: width 0.3s linear;
+    }
+}
+
+.toast {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+    max-width: $toast-max-width;
+}
+
+.toast > .error {
+    @include toast($aurecon--error, "Error");
+}
+
+.toast > .information {
+    @include toast($aurecon--information, "Information");
+}
+
+.toast > .warning {
+    @include toast($aurecon--warning, "Warning");
+}
+
+.toast > .success {
+    @include toast($aurecon--success, "Success");
+}

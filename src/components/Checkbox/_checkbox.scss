@@ -1,0 +1,55 @@
+@import "../colours";
+
+$checkbox-size: 24px;
+$checkbox-mark-size: 25px;
+$checkbox-padding: 10px;
+$checkbox-border-color: $aurecon--primary;
+$checkbox-unactive-background: #FFF;
+$checkbox-active-background: $aurecon--primary;
+$checkbox-border: $aurecon--primary;
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: $checkbox-padding;
+
+    input {
+        -webkit-appearance: none;
+        width: $checkbox-size;
+        height: $checkbox-size;
+        background-color: $checkbox-unactive-background;
+        border: 2px solid $checkbox-border;
+        outline: none;
+        border-radius: 3px;
+        margin-right: $checkbox-padding;
+        transition: background-color 0.3s ease;
+    }
+
+    input:checked {
+        background-color: $checkbox-active-background;
+    }
+
+    input::before {
+        content: "\2713";
+        font-size: $checkbox-mark-size;
+        font-weight: bold;
+        position: relative;
+        top: -8px;
+        left: -1px;
+        color: $checkbox-unactive-background;
+    }
+
+    &:focus {
+        input {
+            box-shadow: 0px 3px 5px 1px #000;
+        }
+    }
+    input:focus {
+        box-shadow: 0px 1px 3px -1px #000;
+    }
+
+    :disabled {
+        opacity: 0.4;
+    }
+}

@@ -1,0 +1,76 @@
+@import "../colours";
+
+$dialogue-top-color: $aurecon--primary;
+$dialogue-small-padding: 20px;
+$dialogue-large-padding: 50px;
+$dialogue-padding: 15px;
+
+.dialogue {
+    background-color: #fff;
+    border-top: 6px solid $dialogue-top-color;
+    padding-top: $dialogue-large-padding;
+    box-shadow: 0px 0px 15px 17px rgba(0, 0, 0, .05);
+    position: relative;
+    margin: $dialogue-padding;
+
+    > .close {
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f00d";
+            display: block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+            position: absolute;
+            color: #777;
+            right: 25px;
+            font-size: 1.2em;
+            top: 10px;
+            cursor: pointer;
+        }
+    }
+
+    > .title {
+        font-weight: normal;
+        margin: 0;
+    }
+
+    > .content {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        margin: 0;
+    }
+
+    > .footer {
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: inherit;
+        font-weight: bold;
+    }
+
+    > div {
+        padding-left: $dialogue-large-padding;
+        padding-right: $dialogue-large-padding;
+    }
+
+    > :last-child {
+        padding-bottom: $dialogue-large-padding;
+    }
+
+    .actions {
+        background-color: mix($dialogue-top-color, mix(#000000, #FFFFFF, 5%), 5%);
+        padding-top: $dialogue-small-padding;
+        padding-bottom: $dialogue-small-padding;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-content: flex-end;
+        align-items: flex-end;
+
+        > button:not(:last-child) {
+            margin-right: $dialogue-small-padding;
+        }
+    }
+}

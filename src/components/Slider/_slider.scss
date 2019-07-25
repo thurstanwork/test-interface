@@ -1,0 +1,197 @@
+@import "../colours";
+
+$slider-bar-width: 400px;
+$slider-bar-min-max-size: 50px;
+$slider-bar-height: 10px;
+$slider-bar-label: 40px;
+$slider-width: $slider-bar-width + $slider-bar-label;
+$slider-primary: $aurecon--primary;
+$slider-padding: 10px;
+$slider-dot-size: 20px;
+
+.slider {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: $slider-bar-width $slider-bar-label;
+    grid-template-areas:
+        "label label"
+        "bar bar-label";
+    grid-column-gap: $slider-padding * 3;
+    grid-row-gap: $slider-padding;
+
+    .slider-label {
+        grid-area: label;
+        font-weight: bold;
+    }
+
+    .bar {
+        grid-area: bar;
+        display: block;
+        height: 5px;
+        width: $slider-bar-width - ($slider-bar-min-max-size * 2);
+        background-color: #999;
+        position: relative;
+        top: calc(50% - 2.5px);
+        left: calc(50% - #{ ($slider-bar-width / 2) - $slider-bar-min-max-size });
+        position: relative;
+
+        @for $i from 0 through 100 {
+            .value-#{$i} {
+                width: ($slider-bar-width - ($slider-bar-min-max-size * 2)) * $i / 100;
+                height: 5px;
+                background-color: $slider-primary;
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-content: center;
+                align-items: center;
+                transition: width 0.3s ease;
+
+                &::after {
+                    content: " ";
+                    display: block;
+                    $temp-dot-size: $slider-dot-size;
+                    width: $temp-dot-size;
+                    height: $temp-dot-size;
+                    border-radius: 50%;
+                    background-color: $slider-primary;
+                    position: absolute;
+                    left: (($slider-bar-width - ($slider-bar-min-max-size * 2)) * $i / 100) - $temp-dot-size / 2;
+                    transition: left 0.3s ease, width 0.3s ease, height 0.3s ease;
+                    cursor: pointer;
+                }
+
+                &:focus::after {
+                    box-shadow: 0px 0px 3px 0px #000;
+                }
+
+                &:hover::after {
+                    $temp-dot-size: $slider-dot-size + 2px;
+                    width: $temp-dot-size;
+                    height: $temp-dot-size;
+                    left: (($slider-bar-width - ($slider-bar-min-max-size * 2)) * $i / 100) - $temp-dot-size / 2;
+                }
+            }
+        }
+    }
+
+    .bar::before {
+        content: "0";
+        display: block;
+        position: absolute;
+        left: -$slider-bar-min-max-size;
+        width: $slider-bar-min-max-size;
+        text-align: center;
+        top: -200%;
+    }
+
+    .bar::after {
+        content: "100";
+        display: block;
+        position: absolute;
+        right: -$slider-bar-min-max-size;
+        width: $slider-bar-min-max-size;
+        text-align: center;
+        top: -200%;
+    }
+
+    .bar-label {
+        grid-area: bar-label;
+        display: block;
+        font-weight: bold;
+        text-align: center;
+        background-color: $slider-primary;
+        padding: 5px;
+        min-height: 2rem;
+    }
+
+    &.disabled {
+        opacity: 0.4;
+    }
+}
+
+@mixin slider-thumb() {
+    appearance: none;
+    display: block;
+    width: $slider-dot-size;
+    height: $slider-dot-size;
+    border-radius: 50%;
+    background-color: $aurecon--primary;
+    transition: width 0.3s ease, height 0.3s ease;
+    border: none;
+
+    &:focus {
+        box-shadow: 0px 0px 3px 0px #000;
+    }
+
+    &:hover {
+        width: $slider-dot-size + 2px;
+        height: $slider-dot-size + 2px;
+    }
+}
+
+.input-slider {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    align-content: center;
+    align-items: center;
+
+    &::before {
+        content: attr(data-min);
+        flex: 0;
+        display: block;
+        padding: 10px;
+    }
+
+    &::after {
+        content: attr(data-max);
+        flex: 0;
+        display: block;
+        padding: 10px;
+    }
+
+    > input {
+        appearance: none;
+        background-color: #999;
+        height: 5px;
+        flex: 1;
+
+        > div:nth-child(2) {
+            background-color: $aurecon--primary;
+            height: 5px;
+        }
+
+        > div {
+            color: black;
+        }
+
+        &::-moz-range-progress {
+            background-color: $aurecon--primary;
+            height: 5px;
+        }
+
+        /* the styles cant be grouped together because the browsers do not want to play together */
+        &::-moz-range-thumb {
+            @include slider-thumb();
+        }
+        &::-webkit-slider-thumb {
+            @include slider-thumb();
+        }
+        &::-ms-thumb {
+            @include slider-thumb();
+        }
+
+        &:focus {
+            outline: none;
+            &::-moz-range-thumb {
+                box-shadow: 0px 0px 3px 0px #000;
+            }
+        }
+
+        &:disabled {
+            opacity: 0.4;
+        }
+    }
+}

@@ -1,0 +1,228 @@
+@import "../colours";
+@import "../../node_modules/sassdash/index";
+@import "../../node_modules/sass-svg/index";
+
+$tooltip-padding: 35px;
+$tooltip-width: 300;
+$tooltip-height: 93;
+$tooltip-big-height: 250;
+$tooltip-arrow-size: 30px;
+$tooltip-arrow-size-trig: $tooltip-arrow-size * 1.45 + 6px; // sqrt($tooltip-arrow-size ^ 2 + $tooltip-arrow-size ^ 2) => sqrt(2 * $tooltip-arrow-size * $tooltip-arrow-size) => $tooltip-arrow-size * sqrt(2)
+$tooltip-background: #FFFFFF;
+$tooltip-shadow: 0px 0px 4px -1px #333;
+$tooltip-border: 1px solid rgba(0, 0, 0, 0.1);
+
+$tooltip-data-width: 100;
+$tooltip-data-height: 35;
+
+@mixin dropshadow() {
+    @include svg("filter", (
+        id: "f1",
+        x: "-50%",
+        y: "-50%",
+        width: "200%",
+        height: "200%",
+    )) {
+        @include svg("feOffset", (
+            result: "offOut",
+            in: "SourceAlpha",
+            dx: 0,
+            dy: 0
+        ));
+        @include svg("feGaussianBlur", (
+            result: "blurOut",
+            in: "offOut",
+            stdDeviation: 2
+        ));
+        @include svg("feBlend", (
+            in: "SourceGraphic",
+            in2: "blurOut",
+            mode: "normal"
+        ));
+    }
+}
+
+@mixin dropdown($width, $height) {
+    @include svg((x: 0px, y: 0px, width: $width, height: $height, viewBox: 0 0 $width $height)) {
+        @include svg("defs") {
+            @include dropshadow();
+        }
+
+        @include svg("g") {
+            @include svg("rect", (
+                width: $width - 50,
+                height: $height - 50,
+                x: 25,
+                y: 25,
+                rx: 5,
+                fill: "white",
+                filter: "url(#f1)"
+            ));
+            @include svg("g") {
+                @include svg("polygon", (
+                    points: "#{$width / 2},15 #{$width/2 + 10},25 #{$width/2 - 10},25",
+                    fill: "white",
+                    filter: "url(#f1)"
+                ));
+                @include svg("rect", (
+                    width: $width - 50,
+                    height: $height - 50,
+                    x: 25,
+                    y: 25,
+                    rx: 5,
+                    fill: "white"
+                ));
+            }
+        }
+    }
+}
+
+@mixin dropup($width, $height) {
+    @include svg((x: 0px, y: 0px, width: $width, height: $height, viewBox: 0 0 $width $height)) {
+        @include svg("defs") {
+            @include dropshadow();
+        }
+
+        @include svg("g") {
+            @include svg("rect", (
+                width: $width - 10,
+                height: $height - 15,
+                x: 5,
+                y: 5,
+                rx: 2,
+                fill: "white",
+                filter: "url(#f1)"
+            ));
+            @include svg("g") {
+                @include svg("polygon", (
+                    points: "#{$width / 2},#{$height - 5} #{$width/2 - 5},#{$height - 10} #{$width/2 + 5},#{$height - 10}",
+                    fill: "white",
+                    filter: "url(#f1)"
+                ));
+                @include svg("rect", (
+                    width: $width - 10,
+                    height: $height - 15,
+                    x: 5,
+                    y: 5,
+                    rx: 2,
+                    fill: "white",
+                ));
+            }
+        }
+    }
+}
+
+@mixin dropright($width, $height) {
+    @include svg((x: 0px, y: 0px, width: $width, height: $height, viewBox: 0 0 $width $height)) {
+        @include svg("defs") {
+            @include dropshadow();
+        }
+
+        @include svg("g") {
+            @include svg("rect", (
+                width: $width - 50,
+                height: $height - 50,
+                x: 25,
+                y: 25,
+                rx: 5,
+                fill: "white",
+                filter: "url(#f1)"
+            ));
+            @include svg("g") {
+                @include svg("polygon", (
+                    points: "15,#{$height / 2} 25,#{$height/2 - 10} 25,#{$height/2 + 10}",
+                    fill: "white",
+                    filter: "url(#f1)"
+                ));
+                @include svg("rect", (
+                    width: $width - 50,
+                    height: $height - 50,
+                    x: 25,
+                    y: 25,
+                    rx: 5,
+                    fill: "white"
+                ));
+            }
+        }
+    }
+}
+
+@mixin tooltip() {
+    position: relative;
+
+    > .tooltip {
+        display: none;
+
+        font-size: 0.8rem;
+        width: #{$tooltip-width}px;
+        height: #{$tooltip-big-height}px;
+        padding: $tooltip-padding;
+        position: absolute;
+        left: #{(-$tooltip-width / 2) + 8}px;
+        top: 3px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        z-index: 1000;
+        @include dropdown($tooltip-width, $tooltip-big-height);
+
+        &.is-small {
+            height: #{$tooltip-height}px;
+            @include dropdown($tooltip-width, $tooltip-height);
+        }
+
+        &.is-right {
+            height: #{$tooltip-height}px;
+            top: 11px -$tooltip-height / 2 * 1px;
+            left: 0px;
+            @include dropright($tooltip-width, $tooltip-height);
+        }
+
+        &.is-data {
+            width: $tooltip-data-width * 1px;
+            height: $tooltip-data-height * 1px;
+            padding: 5px;
+            text-align: center;
+            top: $tooltip-data-height/2 * -1px - 8px;
+            left: $tooltip-data-width/2 * -1px + 5px;
+            @include dropup($tooltip-data-width, $tooltip-data-height);
+        }
+
+        > .title {
+            font-size: 1.2em;
+        }
+
+        > .body {
+            font-size: 1em;
+        }
+    }
+
+    &:hover {
+        > .tooltip {
+            display: block;
+        }
+    }
+}
+
+.tooltip-info {
+    display: inline;
+    @include tooltip();
+
+    &::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f05a";
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        color: $aurecon--information;
+    }
+}
+
+.tooltip-text {
+    display: inline;
+    @include tooltip();
+    text-decoration: underline;
+}
